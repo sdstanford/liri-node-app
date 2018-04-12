@@ -32,9 +32,10 @@ if (commandType === "my-tweets") {
 //BEGIN SPOTIFY SEARCH
 else if (commandType === "spotify-this-song") {
 
+  
   var spotify = new Spotify(keys.Spotify);
    
-  spotify.search({ type: 'track', query: command}, function(err, data) {
+  spotify.search({ type: 'track', query: command }, function(err, data) {
     if (err) {
       return console.log('Error occurred: ' + err);
     }
@@ -77,19 +78,18 @@ else if (commandType === "movie-this") {
 
 //BEGIN DO-WHAT-IT-SAYS
 else if (commandType === "do-what-it-says") {
+  fs.readFile("random.txt", "utf8", function(error, data) {
 
+    if (error) {
+      return console.log(error);
+    }
+  
+    // Then split it by commas (to make it more readable)
+    var dataArr = data.split(",");
+  
+    // We will then re-display the content as an array for later use.
+    var commandType = dataArr[0];
+    var command = dataArr[1];
+
+})
 }
-
-// var Spotify = function(keys, spotify){
-//     this.keys = keys;
-//     this.spotify = spotify;
-
-// }
-
-// var Twitter = function(keys, spotify){
-//     this.keys = keys;
-//     this.spotify = spotify;
-    
-// }
-// var spotify = new Spotify(keys.spotify);
-// var client = new Twitter(keys.twitter);
